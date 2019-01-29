@@ -6,11 +6,51 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+<header></header>
 <body>
-  <h1>Hola mundo</h1>
-  <h2>bienvenido</h2>
-  <h3>red social</h3>
-  <h4>Hello girlsOnFire!</h4>
-  <script type="module" src="main.js"></script>
+  <div id = "paginaIniSesionAndRegistrar">
+    <button id = "buttonLogin">Iniciar session</button><br>
+    <button id = "buttonLogOut">Salir</button>
+    <button id = "buttonRegister">Registrate!</button><br>
+    <button id = "buttonGoogle">Iniciar con Google</button>
+    <button id = "buttonFacebook">Iniciar con Facebook</button>
+
+    <div id = "modalIniciciarSesion">
+      <form>
+        <input type="text" id="inputEmail" placeholder="Correo @"><br>
+        <input type="password" id="inputPassword" placeholder="Contrasena"><br>
+      </form>
+      <button id = "buttonAcceptLogin">Aceptar</button>
+    </div>    
+
+    <div id = "modalRegistrarse">
+      <form>
+        <input type="text" id="createUsername" placeholder="UserName"><br>
+        <input type="text" id="createEmail" placeholder="Correo @"><br>
+        <input type="password" id="createPassword" placeholder="Contrasena"><br>
+      </form>
+      <button id= "buttonAcceptRegister">Registrar</button><br>        
+    </div>
+  </div>
+
+  <div id = "paginaMuroPrincipalUser">
+
+  </div>
+ 
+  <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB6y4plbowLP3O7C8zj6jRwNOo2qt92Lkc",
+      authDomain: "myfirstbdsn.firebaseapp.com",
+      databaseURL: "https://myfirstbdsn.firebaseio.com",
+      projectId: "myfirstbdsn",
+      storageBucket: "myfirstbdsn.appspot.com",
+      messagingSenderId: "768660542055"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src= "main.js" type='module'></script>    
 </body>
+<footer></footer>
 </html>
