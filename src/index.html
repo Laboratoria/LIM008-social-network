@@ -1,46 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="index.css">
-  <title>Document</title>
+  <title>communitytech</title>
 </head>
+<header></header>
+
 <body>
   <header>
     <div class="header">
-    <h1 class="logo">communitytech</h1>
-    <div class="header-right">
-    <button class="btn-inite-sesion inite-text">Iniciar sesión</button>
-  </div>
-</div>
-</header>
-  <main>
-    <h2 class="logo-in-main">communitytech</h2>
-    <h3 class="slogan">entérate de lo último en tecnología</h3>
-    <div class="ways-of-inite">
-     <button class="btn-register"><a class="register-text" href="#/Register">Registrate</a></button>
-    <p>-o-</p>
-    <button class="btn-continue-with-fb"> Continuar con Facebook </button>
-    <button class="btn-continue-with-google"> Continuar con Google </button>  
-    <h4 class="final-phrase"> ¡Descubre nuestra comunidad! </h4>
+      <h1 class="logo">communitytech</h1>
+      <div class="header-right">
+        <button class="btn-inite-sesion inite-text" id="buttonLogin">Iniciar session</button>
+      </div>
     </div>
-       <div class="pag-register">
+  </header>
+  <main>
+    <script type="module" src="main.js"></script>
+    <div id="paginaIniSesionAndRegistrar">
+      <h2 class="logo-in-main">communitytech</h2>
+      <h3 class="slogan">entérate de lo último en tecnología</h3>
+      <div class="ways-of-inite">
+        <button id="buttonRegister" class="btn-register">Registrate!</button>
+        <p>-o-</p>
+        <button id="buttonLogOut">Salir</button>
+        <button id="buttonFacebook" class="btn-continue-with-fb"> Continuar con Facebook </button>
+        <button id="buttonGoogle" class="btn-continue-with-google"> Continuar con Google </button>
+        <h4 class="final-phrase"> ¡Descubre nuestra comunidad! </h4>
+      </div>
+
+      <div id="modalIniciciarSesion" class="pag-inite">
+
+        <form >
+          <h2 class="text-center">communitytech</h2>
+          <input type="text" id="inputEmail" class="username-o-correo" placeholder="nombre de usuario o correo">
+          <br>
+          <input type="password" id="inputPassword" class="password-enter" placeholder="contraseña">
+          <br>
+          <h7 class="missed">¿Olvidaste tu cuenta?</h7>
+        </form>
+        <button id="buttonAcceptLogin" class="btn-inite-sesion"> Aceptar</button>
+      </div>
+
+      <div id="modalRegistrarse" class="pag-register">
         <h2 class="text-center">únete a nuestra comunidad</h2>
-        <input class="username" placeholder="nombre de usuario">
-        <input class="correo" placeholder="correo">
-        <input class="password" placeholder="constraseña">
-        <button class="btn-register">Registrate</button>
+        <form>
+          <input type="text" id="createUsername" class="username" placeholder="nombre de usuario">
+          <br>
+          <input type="text" id="createEmail" class="correo" placeholder="correo">
+          <br>
+          <input type="password" id="createPassword" class="password" placeholder="constraseña">
+          <br>
+        </form>
+        <button class="btn-register" id="buttonAcceptRegister">Registrar</button>
+        <br>
       </div>
-     <div class="pag-inite">
-        <h2 class="text-center">communitytech</h2>
-        <input class="username-o-correo" placeholder="nombre de usuario o correo">
-        <input class="password-enter" placeholder="contraseña">
-        <h7 class="missed">¿Olvidaste tu cuenta?</h7>
-        <button class= "btn-inite-sesion">Iniciar sesión</button>
+
+      <div id="paginaMuroPrincipalUser">
+
       </div>
+
   </main>
-  <script type="module" src="main.js"></script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB6y4plbowLP3O7C8zj6jRwNOo2qt92Lkc",
+      authDomain: "myfirstbdsn.firebaseapp.com",
+      databaseURL: "https://myfirstbdsn.firebaseio.com",
+      projectId: "myfirstbdsn",
+      storageBucket: "myfirstbdsn.appspot.com",
+      messagingSenderId: "768660542055"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="main.js" type='module'></script>
 </body>
+<footer></footer>
+
 </html>
