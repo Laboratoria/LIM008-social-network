@@ -7,5 +7,6 @@ export const configBD = () =>{
         storageBucket: "myfirstbdsn.appspot.com",
         messagingSenderId: "768660542055"
     }
-    return config;
+    firebase.initializeApp(config);
+    return 1;
 }

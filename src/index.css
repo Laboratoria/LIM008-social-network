@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Nova+Round|Reenie+Beanie|Righteous|Saira+Semi+Condensed');
 
 .pag-register, .pag-inite {
-    display: none;
+    display: block;
 }
 
 body {

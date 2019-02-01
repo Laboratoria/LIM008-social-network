@@ -8,7 +8,7 @@ import { authenticateFacebook , authenticateGoogle } from './lib/auth/authentica
 
 window.onload = () => {
     // INI FIREBASE    
-    //firebase.initializeApp(configBD);
+    configBD();
 
     //INI PAGE
     const buttonLogin = document.getElementById('buttonLogin');
