@@ -1,10 +1,9 @@
-import { templates } from './template.js'
-
+import Inite from '.UI/templates/pagInite.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
-    return viewTmp('#/home');
-  } else if (hash === '#/pagIniteSesion' || hash === '#/pagRegister') {
+    return viewTmp('#/inite');
+  } else if (hash === '#/pagIniteSesion' || hash === '#/pagRegister' || hash === '#/home') {
     return viewTmp(hash);
   } else {
     return viewTmp('#/different');
@@ -17,6 +16,7 @@ const viewTmp = (routers) => {
   container.innerHTML = templates[router];
 }
 
-window.addEventListener('load', changeTmp(window.location.hash))
-if (("onhashchange" in window)) window.onhashchange = () => changeTmp(window.location.hash)
-
+export const initRouter = () => {
+    window.addEventListener('load', changeTmp(window.location.hash))
+    if (("onhashchange" in window)) window.onhashchange = () => changeTmp(window.location.hash)
+  }

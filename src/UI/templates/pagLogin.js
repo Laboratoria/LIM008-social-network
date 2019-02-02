@@ -8,7 +8,7 @@ export default () => {
     <input type="text" id="inputEmail" class="username-o-correo" placeholder="nombre de usuario o correo">
     <input type="password" id="inputPassword" class="password-enter" placeholder="contraseña">
     <h7 class="missed">¿Olvidaste tu cuenta?</h7>
-    <button id="buttonAcceptLogin" class="btn-inite-sesion"><span><a href="#/post>Iniciar sesión</a></span></button>
+    <button id="buttonAcceptLogin" class="btn-inite-sesion"><span><a href="#/home>Iniciar sesión</a></span></button>
   </form>
     `;
         div.innerHTML = divContent;

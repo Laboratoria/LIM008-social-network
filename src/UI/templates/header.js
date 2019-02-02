@@ -4,7 +4,7 @@ export default () => {
 <div class="header">
           <h1 class="logo">
               <span>
-                  <a href="#/home">communitytech</a>
+                  <a href="#/inite">communitytech</a>
               </span>
           </h1>
           <div class="header-right">
