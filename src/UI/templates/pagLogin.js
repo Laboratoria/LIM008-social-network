@@ -1,4 +1,4 @@
-import { logInUser } from "./lib/auth/logInUser.js";
+import { logInOnSubmit } from "../view-controller.js";
 
 export default () => {
     const div = document.createElement('div');
@@ -14,9 +14,8 @@ export default () => {
         div.innerHTML = divContent;
       // selecccionando elementos del DOM
       //capturando valor del email y password para realizar la función logInUser
-      const currentEmail = div.querySelector('#inputEmail').value;
-      const currentPassword = div.querySelector('#inputPassword').value;
+     
     const btnSignIn = div.querySelector('#buttonAcceptLogin');
-    btnSignIn.addEventListener('click', logInUser(currentEmail,currentPassword));
+    btnSignIn.addEventListener('click', logInOnSubmit);
     return div;
   }
