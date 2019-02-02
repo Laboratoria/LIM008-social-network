@@ -1,3 +1,5 @@
+import { registerOnSubmit } from '../view-controller.js';
+
 export default () => {
     const div = document.createElement('div');
     const divContent = `
