@@ -18,6 +18,6 @@ export const registerOnSubmit = () => {
   const emailForCreateNewUser = document.querySelector('#createEmail').value;
   const passwordForCreateNewUser = document.querySelector('#createPassword').value;
   createUser(emailForCreateNewUser, passwordForCreateNewUser)
-  .then(() => changeHash('home'))
+  .then(() => changeHash('/home'))
   .catch(() => {})
 }
