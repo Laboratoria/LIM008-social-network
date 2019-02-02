@@ -1,20 +1,12 @@
-import { templates } from './template.js'
+import { logInUser } from '../lib/auth/logInUser.js';
 
-const changeTmp = (hash) => {
-  if (hash === '#/' || hash === '' || hash === '#') {
-    return viewTmp('#/home');
-  } else if (hash === '#/pagIniteSesion' || hash === '#/pagRegister') {
-    return viewTmp(hash);
-  } else {
-    return viewTmp('#/different');
-  }
+const changeHash = (hash) => {
+ location.hash= hash;
 }
-
-const viewTmp = (routers) => {
-  const router = routers.substr(2, routers.length - 2)
-  const container = document.getElementById("container")
-  container.innerHTML = templates[router];
+export const logInOnSubmit = () => {
+  event.preventDefault();
+  const currentEmail = document.querySelector('#inputEmail').value;
+  const currentPassword = document.querySelector('#inputPassword').value;
+  logInUser(currentEmail,currentPassword)
+  .then(() => changeHash(''))
 }
-
-window.addEventListener('load', changeTmp(window.location.hash))
-if (("onhashchange" in window)) window.onhashchange = () => changeTmp(window.location.hash)

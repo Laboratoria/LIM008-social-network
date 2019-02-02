@@ -9,7 +9,7 @@ const changeTmp = (hash) => {
   } else if (hash === '#/pagIniteSesion' || hash === '#/pagRegister' || hash === '#/home') {
     return viewTmp(hash);
   } else {
-    return viewTmp('#/different');
+    return viewTmp('#/inite');
   }
 }
 
