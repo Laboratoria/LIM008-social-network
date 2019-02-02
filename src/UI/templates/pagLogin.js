@@ -13,8 +13,6 @@ export default () => {
     `;
         div.innerHTML = divContent;
       // selecccionando elementos del DOM
-      //capturando valor del email y password para realizar la función logInUser
-     
     const btnSignIn = div.querySelector('#buttonAcceptLogin');
     btnSignIn.addEventListener('click', logInOnSubmit);
     return div;
