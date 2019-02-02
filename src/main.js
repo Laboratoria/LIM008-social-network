@@ -28,7 +28,7 @@ window.onload = () => {
     const createPassword= document.getElementById('createPassword');
     const buttonCreateUser = document.getElementById('buttonAcceptRegister');
 
-    buttonLogOut.style.display = 'none';
+    // buttonLogOut.style.display = 'none';
 
     buttonAcceptLogin.addEventListener('click', () => {
         const saveobj = logInUser(inputEmail.value, inputPassword.value);

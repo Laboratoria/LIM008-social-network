@@ -1,8 +1,9 @@
 // importamos la funcion que vamos a testear
-import { myFunction } from "../src/lib/index";
+import { authenticateFacebook,authenticateGoogle } from "../src/lib/auth/authenticateFaceGoogle";
 
-describe('myFunction', () => {
-  it('debería ser una función', () => {
+describe('authenticateFacebook', () => {
+
+  it('debería permitirme autenticarme con mi cuenta de Facebook', () => {
     expect(typeof myFunction).toBe('function');
   });
 });

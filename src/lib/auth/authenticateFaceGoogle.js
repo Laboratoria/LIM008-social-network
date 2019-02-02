@@ -1,6 +1,6 @@
 let provider;
 
-const saveDataUser = (inputProvider) =>{
+ const saveDataUser = (inputProvider) =>{
     const objDataUser = {}; //?
     firebase.auth().signInWithPopup(inputProvider)
     .then((result) => {
