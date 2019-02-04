@@ -1,7 +1,7 @@
 import Inite from '.UI/templates/pagInite.js';
 import Login from '.UI/templates/pagLogin.js';
 import Register from '.UI/templates/pagRegister.js';
-import Home from 'UI/templates/home.js';
+import Home from '.UI/templates/home.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
@@ -15,7 +15,7 @@ const changeTmp = (hash) => {
 
 const viewTmp = (routers) => {
     const router = routers.substr(2, routers.length - 2)
-    const root = document.getElementById('container');
+    const container = document.getElementById('container');
     container.innerHTML = '';
     switch (router) {
       case 'inite':       

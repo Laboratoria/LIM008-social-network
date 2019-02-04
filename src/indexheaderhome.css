@@ -5,7 +5,11 @@
 }
 
 body {
-    background: url(fondo.jpg) fixed center center;
+    background: url(fondo.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+	   -moz-background-size: cover;
+	   -o-background-size: cover;
+	   background-size: cover;
 }
 
 .header {
@@ -53,6 +57,14 @@ body {
  
  .ways-of-inite {
      text-align: center;
+ }
+
+ .btn-register-in-inite {
+     display: none;
+ }
+
+ .menu-muro {
+     display: none;
  }
 
  .btn-register {

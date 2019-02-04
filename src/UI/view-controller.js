@@ -9,7 +9,7 @@ export const logInOnSubmit = () => {
   const currentEmail = document.querySelector('#inputEmail').value;
   const currentPassword = document.querySelector('#inputPassword').value;
   logInUser(currentEmail,currentPassword)
-  .then(() => changeHash('/home'))
+  .then(() => changeHash('#/home'))
   .catch(() => {})
 }
 
@@ -18,6 +18,7 @@ export const registerOnSubmit = () => {
   const emailForCreateNewUser = document.querySelector('#createEmail').value;
   const passwordForCreateNewUser = document.querySelector('#createPassword').value;
   createUser(emailForCreateNewUser, passwordForCreateNewUser)
-  .then(() => changeHash('/home'))
+  .then(() => changeHash('#/home'))
   .catch(() => {})
 }
+

@@ -13,16 +13,17 @@ export default () => {
                       <a href="#/pagIniteSesion">Iniciar Sesión</a>
                   </span>
               </button>
-              <button class="btn-register register-text" id="buttonRegister">
+              <button class="btn-register register-text btn-register-in-inite " id="buttonRegister">
               <span>
               <a href="#/pagRegister">Registrar</a>
               </span>
               </button>
-              <nav>
+              <nav class="menu-muro">
               <a href="#/misPosts">Mis Posts</a>
+              </nav>
           </div>
-    </div>
+    </div> 
 `;
-header.innerHTML= headerHTML;
-return header;
+    header.innerHTML = headerHTML;
+    return header;
 }
