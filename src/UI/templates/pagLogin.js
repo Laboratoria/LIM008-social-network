@@ -1,4 +1,3 @@
-import { logInOnSubmit } from "../view-controller.js";
 
 export default () => {
     const div = document.createElement('div');
@@ -13,7 +12,5 @@ export default () => {
     `;
         div.innerHTML = divContent;
       // selecccionando elementos del DOM
-    const btnSignIn = div.querySelector('#buttonAcceptLogin');
-    btnSignIn.addEventListener('click', logInOnSubmit);
     return div;
   }
