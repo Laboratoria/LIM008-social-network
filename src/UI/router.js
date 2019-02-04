@@ -1,7 +1,7 @@
-import Inite from '.UI/templates/pagInite.js';
-import Login from '.UI/templates/pagLogin.js';
-import Register from '.UI/templates/pagRegister.js';
-import Home from '.UI/templates/home.js';
+import Inite from './templates/pagInite.js';
+import Login from './templates/pagLogin.js';
+import Register from './templates/pagRegister.js';
+import Home from './templates/home.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
@@ -19,7 +19,7 @@ const viewTmp = (routers) => {
     container.innerHTML = '';
     switch (router) {
       case 'inite':       
-          container.appendChild(Inite());  
+          container.innerHTML(Inite());  
         break;
       case 'pagIniteSesion':
         container.appendChild(Login());

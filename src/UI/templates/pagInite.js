@@ -22,4 +22,5 @@ const butttonGoogle = document.querySelector('buttonGoogle');
 
 buttonFacebook.addEventListener('click', authenticateFacebook);
 butttonGoogle.addEventListener('click',authenticateGoogle);
-}
+return div;
+}  
