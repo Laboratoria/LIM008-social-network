@@ -1,8 +1,8 @@
 import { registerOnSubmit } from '../view-controller.js';
 
 export default () => {
-    const div = document.createElement('div');
-    const divContent = `
+  const div = document.createElement('div');
+  const divContent = `
   <h2 class="text-center">únete a nuestra comunidad</h2>
   <form>
     <input type="text" id="createUsername" class="username" placeholder="nombre de usuario">
@@ -17,9 +17,9 @@ export default () => {
     </button>
   </form>
 </div>`;
-    div.innerHTML = divContent;
-    //capturando acciones del DOM
-    btnRegister = document.querySelector('#buttonAcceptRegister');
-    btnRegister.addEventListener('click', registerOnSubmit);
-    return div;
-}
+  div.innerHTML = divContent;
+  // capturando acciones del DOM
+  const btnRegister = document.querySelector('#buttonAcceptRegister');
+  btnRegister.addEventListener('click', registerOnSubmit);
+  return div;
+};
