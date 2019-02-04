@@ -16,7 +16,6 @@ export default () => {
 <input type="text" class="campo-de-texto" placeholder="¿Que hay de nuevo?></input>
 <img src="photoUrl.user">
 </div>
-
 <div class="container-of-posts>
 </div>`;
 div.innerHTML=divContent;

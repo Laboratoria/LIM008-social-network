@@ -1,4 +1,4 @@
-import { initRouter } from './UI/router.js';
+import { initRouter, viewHeader } from './UI/router.js';
 
 const init = () => {
   // Initialize Firebase
@@ -14,6 +14,7 @@ const init = () => {
   firebase.initializeApp(config);
   
   initRouter();
+  viewHeader();
 };
 
 window.onload = init();

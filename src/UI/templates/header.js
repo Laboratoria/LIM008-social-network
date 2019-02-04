@@ -1,4 +1,4 @@
-const paintHeader = (hash) => {
+export default (hash) => {
     const header = document.createElement('header');
     const headerHTML = `
       <div class="header">
@@ -7,7 +7,7 @@ const paintHeader = (hash) => {
           <a href="#/inite">communitytech</a>
         </span>
       </h1>
-        ${hash === 'inite' ? `
+        ${hash === '#/inite' ? `
         <div class="btn-inite-space">
         <button class="btn-inite-sesion inite-text" id="buttonLogin">
           <span>
@@ -15,7 +15,7 @@ const paintHeader = (hash) => {
           </span>
         </button>
       </div>` : null}
-      ${hash === 'pagRegister' ? `
+      ${hash === '#/pagRegister' ? `
       <div class="btn-inite-space">
       <button class="btn-inite-sesion inite-text" id="buttonLogin">
         <span>
@@ -23,7 +23,7 @@ const paintHeader = (hash) => {
         </span>
       </button>
     </div>` : null}
-      ${hash === 'pagIniteSesion' ? `      
+      ${hash === '#/pagIniteSesion' ? `      
         <div class=" btn-register-in-inite">
           <button class="btn-register register-text" id="buttonRegister">
             <span>
@@ -31,7 +31,7 @@ const paintHeader = (hash) => {
             </span>
           </button>
         </div> ` : null}
-        ${hash === 'home' ? ` <div class="menu-in-inite">
+        ${hash === '#/home' ? ` <div class="menu-in-inite">
         <nav class="menu-muro">
           <a href="#/misPosts">Mis Posts</a>
         </nav>
@@ -41,6 +41,3 @@ const paintHeader = (hash) => {
     header.innerHTML = headerHTML;
     return header;
   };
-  
-  const headerContainer = document.getElementById('header-container');
-  headerContainer.innerHTML = paintHeader();
