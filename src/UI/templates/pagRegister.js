@@ -1,6 +1,6 @@
 export default () => {
-    const div = document.createElement('div');
-    const divContent = `
+  const div = document.createElement('div');
+  const divContent = `
   <h2 class="text-center">únete a nuestra comunidad</h2>
   <form>
     <input type="text" id="createUsername" class="username" placeholder="nombre de usuario">

@@ -1,8 +1,8 @@
 // import { authenticateFacebook, authenticateGoogle } from "../../lib/auth/authenticateFaceGoogle.js";
 
 export default () => {
-    const div = document.createElement('div');
-    const divContent = `
+  const div = document.createElement('div');
+  const divContent = `
     <h2 class="logo-in-main">communitytech</h2>
   <h3 class="slogan">entérate de lo último en tecnología</h3>
   <div class="ways-of-inite">
@@ -14,13 +14,6 @@ export default () => {
   </div>
   </div>
 ` ;
-div.innerHTML= divContent;
-
-// dom de los botones continuar con Facebook y Google
-// const buttonFacebook = document.querySelector('#buttonFacebook');
-// const butttonGoogle = document.querySelector('buttonGoogle');
-
-// buttonFacebook.addEventListener('click', authenticateFacebook);
-// butttonGoogle.addEventListener('click',authenticateGoogle);
+  div.innerHTML = divContent;
 return div;
 }  

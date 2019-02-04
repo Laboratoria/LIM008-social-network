@@ -1,4 +1,4 @@
-import { logInUser } from '../lib/auth/logInUser.js';
+// import { logInUser } from '../lib/auth/logInUser.js';
 import { createUser } from '../lib/auth/createUser.js';
 import { authenticateFacebook, authenticateGoogle} from '../../src/lib/auth/authenticateFaceGoogle.js'
 
@@ -6,14 +6,14 @@ const changeHash = (hash) => {
   location.hash = hash;
 }
 
-const logInOnSubmit = () => {
-  event.preventDefault();
-  const currentEmail = document.querySelector('#inputEmail').value;
-  const currentPassword = document.querySelector('#inputPassword').value;
-  logInUser(currentEmail, currentPassword)
-    .then(() => changeHash('/home'))
-    .catch(() => { })
-}
+// const logInOnSubmit = () => {
+//   event.preventDefault();
+//   const currentEmail = document.querySelector('#inputEmail').value;
+//   const currentPassword = document.querySelector('#inputPassword').value;
+//   logInUser(currentEmail, currentPassword)
+//     .then(() => changeHash('/home'))
+//     .catch(() => { })
+// }
 
 const registerOnSubmit = () => {
   event.preventDefault();
