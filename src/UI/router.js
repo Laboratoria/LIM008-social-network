@@ -2,7 +2,8 @@ import Inite from './templates/pagInite.js';
 import Login from './templates/pagLogin.js';
 import Register from './templates/pagRegister.js';
 import Home from './templates/home.js';
-import { statusUserController, accesWithFbOrGoogle, btnAcceptLoginAndSendToHome, btnAcceptRegisterAndSendToHome } from './view-controller.js';
+// import { accesWithFbOrGoogle, btnAcceptLoginAndSendToHome
+//   , btnAcceptRegisterAndSendToHome } from './view-controller.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
@@ -20,24 +21,22 @@ const viewTmp = (routers) => {
   container.innerHTML = '';
   switch (router) {
   case 'inite':
-    container.appendChild(Inite());
-    accesWithFbOrGoogle();
+    Inite();
     break;
   case 'pagIniteSesion':
-    container.appendChild(Login());
-    btnAcceptLoginAndSendToHome();
+    Login();
+    // btnAcceptLoginAndSendToHome();
     break;
   case 'pagRegister':
-    container.appendChild(Register());
-    btnAcceptRegisterAndSendToHome();
+    Register();
+    // btnAcceptRegisterAndSendToHome();
     break;
   case 'home':
-    container.appendChild(Home());
-    statusUserController();
+    Home();
+    // statusUserController();
     break;
   default:
-    container.appendChild(Inite());
-    accesWithFbOrGoogle();
+    Inite();
     break;
   }
 };

@@ -1,7 +1,8 @@
+import { mainRedSocial} from '../view-controller.js';
 
 export default () => {
-    const div = document.createElement('div');
-    const divContent = `
+  const container = document.getElementById('container');
+  const divContent = `
     <button class="btn-inite-sesion inite-text" id="buttonDeleteUser">Eliminar cuenta</button> 
     <button class="btn-inite-sesion inite-text" id="buttonLogOut">Salir</button> 
     <div class="buttonsOfCategories">
@@ -21,6 +22,13 @@ export default () => {
 
     <div class="container-of-posts>
     </div>`;
-    div.innerHTML=divContent;
-    return div;
-}
+  container.innerHTML = divContent;
+
+  // capturar todos los eventos de entrada del muro principal
+  const buttonDeleteUser = document.getElementById('buttonDeleteUser');
+  const buttonLogOut = document.getElementById('buttonLogOut');
+
+  mainRedSocial(buttonDeleteUser, buttonLogOut);
+
+  return 1;
+};
