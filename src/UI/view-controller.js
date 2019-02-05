@@ -135,7 +135,7 @@ export const btnAcceptRegisterAndSendToHome = (userName, userEmail, userPassword
             .then(() => console.log('documento se escribio correctamente'))
             .catch(() => console.log(err.message));
         });
-        changeHash('/inite') ;
+        changeHash('/home') ;
       })
       .catch((err) => {
         console.log(err.code);
