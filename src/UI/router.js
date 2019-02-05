@@ -2,7 +2,7 @@ import Inite from './templates/pagInite.js';
 import Login from './templates/pagLogin.js';
 import Register from './templates/pagRegister.js';
 import Home from './templates/home.js';
-import Header from './templates/header.js';
+// import Header from './templates/header.js';
 import { accesWithFbOrGoogle,btnAcceptLoginAndSendToHome,btnAcceptRegisterAndSendToHome } from './view-controller.js';
 
 const changeTmp = (hash) => {
@@ -13,13 +13,6 @@ const changeTmp = (hash) => {
     } else {
         return viewTmp('#/inite');
     }
-}
-
-export const viewHeader = () => {
-    const routers = window.location.hash;
-    const router = routers.substr(2, routers.length - 2)
-    const headerContainer = document.getElementById('header-container');
-    headerContainer.innerHTML = Header(router);
 }
 
 const viewTmp = (routers) => {
@@ -53,3 +46,8 @@ export const initRouter = () => {
     window.addEventListener('load', changeTmp(window.location.hash))
     if (("onhashchange" in window)) window.onhashchange = () => changeTmp(window.location.hash)
 }
+
+// export const initRouterHeader = () => {
+//     window.addEventListener('load', Header(window.location.hash))
+//     if (("onhashchange" in window)) window.onhashchange = () => Header(window.location.hash)
+// }

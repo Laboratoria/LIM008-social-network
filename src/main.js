@@ -1,4 +1,5 @@
-import { initRouter, viewHeader } from './UI/router.js';
+import { initRouter} from './UI/router.js';
+import Header from './UI/templates/header.js';
 
 const init = () => {
   // Initialize Firebase
@@ -14,7 +15,15 @@ const init = () => {
   firebase.initializeApp(config);
   
   initRouter();
-  viewHeader();
+//   initRouterHeader();
 };
 
-window.onload = init();
+const viewHeader = (hash) => {
+    const headerContainer = document.getElementById('header-container');
+    headerContainer.innerHTML = Header(hash);
+}
+
+window.onload = 
+    init();
+    viewHeader(window.location.hash);
+

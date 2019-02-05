@@ -10,14 +10,17 @@ export default () => {
     <button>Dispositivos móviles</button>
     <button>Curiosidades(ciencias)</button>
 </div>
-
 <div class="section-of-new-post">
-<h6 class="text-create-new-post"> Crear nuevo post </h6>
-<input type="text" class="campo-de-texto" placeholder="¿Que hay de nuevo?></input>
-<img src="photoUrl.user">
+<button class="crear-nuevo-post">Crear nuevo post</button>
 </div>
 <div class="container-of-posts>
+<h6 class="post-tittle-categoria">Categoría<h6>
+<h7 class="tittle-of-post">Titulo</h7>
+<p>DESCRIPCION</p>
+<button class="like"><3</button>
+<button class="coment">comment</button>
+<button class="share">share</button>
 </div>`;
 div.innerHTML=divContent;
-
+return div;
 }

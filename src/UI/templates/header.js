@@ -1,5 +1,5 @@
 export default (hash) => {
-    const header = document.createElement('header');
+    const header = document.createElement('div');
     const headerHTML = `
       <div class="header">
       <h1 class="logo">
@@ -33,6 +33,7 @@ export default (hash) => {
         </div> ` : null}
         ${hash === '#/home' ? ` <div class="menu-in-inite">
         <nav class="menu-muro">
+        <img src="photoUrl.user">
           <a href="#/misPosts">Mis Posts</a>
         </nav>
       </div>` : null}
@@ -40,4 +41,4 @@ export default (hash) => {
   `;
     header.innerHTML = headerHTML;
     return header;
-  };
+  }
