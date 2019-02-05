@@ -1,16 +1,25 @@
+import { btnAcceptRegisterAndSendToHome} from '../view-controller.js';
+
 export default () => {
-  const div = document.createElement('div');
+  const container = document.getElementById('container');
   const divContent = `
   <h2 class="text-center">únete a nuestra comunidad</h2>
-  <form class="form-register">
-    <input type="text" id="createUsername" class="input-username" placeholder="nombre de usuario">
-    <input type="text" id="createEmail"  class="input-correo" placeholder="correo">
-    <input type="password" id="createPassword" class="input-password" placeholder="constraseña">
+  <form>
+    <input type="text" id="createUsername" class="username" placeholder="nombre de usuario">
+    <input type="text" id="createEmail"  class="correo" placeholder="correo">
+    <input type="password" id="createPassword" class="password" placeholder="constraseña">
     <button class="btn-register" id="buttonAcceptRegister">
     Registrar
     </button>
   </form>
 </div>`;
-    div.innerHTML = divContent;
-    return div;
+  container.innerHTML = divContent;
+
+  const createUsername = document.getElementById('createUsername'); 
+  const createEmail = document.getElementById('createEmail');
+  const createPassword = document.getElementById('createPassword');
+  const buttonAcceptRegister = document.getElementById('buttonAcceptRegister');
+
+  btnAcceptRegisterAndSendToHome(createUsername, createEmail, createPassword, buttonAcceptRegister);
+  return 1;
 }

@@ -1,13 +1,13 @@
-export default (hash) => {
-    const header = document.createElement('div');
-    const headerHTML = `
+const paintHeader = (hash) => {
+  const header = document.createElement('header');
+  const headerHTML = `
       <div class="header">
       <h1 class="logo">
         <span>
           <a href="#/inite">communitytech</a>
         </span>
       </h1>
-        ${hash === '#/inite' ? `
+        ${hash === 'inite' ? `
         <div class="btn-inite-space">
         <button class="btn-inite-sesion inite-text" id="buttonLogin">
           <span>
@@ -15,7 +15,7 @@ export default (hash) => {
           </span>
         </button>
       </div>` : null}
-      ${hash === '#/pagRegister' ? `
+      ${hash === 'pagRegister' ? `
       <div class="btn-inite-space">
       <button class="btn-inite-sesion inite-text" id="buttonLogin">
         <span>
@@ -23,7 +23,7 @@ export default (hash) => {
         </span>
       </button>
     </div>` : null}
-      ${hash === '#/pagIniteSesion' ? `      
+      ${hash === 'pagIniteSesion' ? `      
         <div class=" btn-register-in-inite">
           <button class="btn-register register-text" id="buttonRegister">
             <span>
@@ -31,14 +31,16 @@ export default (hash) => {
             </span>
           </button>
         </div> ` : null}
-        ${hash === '#/home' ? ` <div class="menu-in-inite">
+        ${hash === 'home' ? ` <div class="menu-in-inite">
         <nav class="menu-muro">
-        <img src="photoUrl.user">
           <a href="#/misPosts">Mis Posts</a>
         </nav>
       </div>` : null}
    </div>
   `;
-    header.innerHTML = headerHTML;
-    return header;
-  }
+  header.innerHTML = headerHTML;
+  return header;
+};
+  
+const headerContainer = document.getElementById('header-container');
+headerContainer.innerHTML = paintHeader();
