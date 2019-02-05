@@ -23,10 +23,19 @@ export const logOutUser = () => {
   return firebase.auth().signOut();
 };
 
-export const sendEmail = () => {
-
+export const sendEmail = (config) => {
+  return firebase.auth().currentUser.email.sendEmailVerification(config);
 };
 
 export const passwordReset = () => {
 
 };
+
+export const userStateChange = (user) => {
+  firebase.auth().onAuthStateChanged((userState) => user.push(userState));
+  return user;
+}
+
+export const dataConnectUser = () => {
+  return firebase.auth().currentUser;
+}
