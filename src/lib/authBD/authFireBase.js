@@ -1,5 +1,5 @@
 // variables locales
-let provider;
+let provider; // ?
 
 export const createUser = (email, password) => {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -27,8 +27,8 @@ export const sendEmail = (config) => {
   return firebase.auth().currentUser.email.sendEmailVerification(config);
 };
 
-export const passwordReset = () => {
-
+export const passwordReset = (email) => {
+  return firebase.auth().sendPasswordResetEmail(email);
 };
 
 export const userStateChange = (user) => {
