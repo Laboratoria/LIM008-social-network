@@ -1,6 +1,7 @@
 // import { logInUser } from '../lib/auth/logInUser.js';
 
-import { createUser, authenticateFacebook, authenticateGoogle, logInUser, logOutUser} 
+import { createUser, authenticateFacebook, authenticateGoogle, logInUser, logOutUser,
+  sendEmail, userStateChange, dataConnectUser} 
   from '../lib/authBD/authFireBase.js';
 
 import { createUserFireStore, readUserFireStore, updateUserFireStore, deleteUserFireStore}
@@ -10,34 +11,63 @@ const changeHash = (hash) => {
   location.hash = hash;
 };
   
+const objectCreateUserProfile = (usuario, correo, foto) => {
+  const objectUserProfile = {};
+  objectUserProfile.usuario = usuario;
+  objectUserProfile.correo = correo;
+  objectUserProfile.foto = foto;
+  objectUserProfile.estado = '';
+  objectUserProfile.edad = '';
+  return objectUserProfile;
+};
+
+const objectCreatePost = () => {
+  const objectPost = {};
+  objectPost.privacidad = 'publico';
+  objectPost.tipo = 'variados';
+  objectPost.contenido = {
+    descripcion: '',
+    multimedia: '',
+  }
+  objectPost.likes = 0;
+  objectPost.comentarios = {
+    quienComento: '',
+    likes: 0,
+  }
+}
+
+export const createPost = () => {
+
+}
+
 export const mainRedSocial = (buttonDeleteUser, buttonLogOut) => {
-  let state;
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      state = true;
-      const userConnect = firebase.auth().currentUser.email;
-      console.log('Usuario conectado es: ' + userConnect);
+  let stateUser = [];
+  stateUser = userStateChange(stateUser);
+  if (stateUser) {
+    // Evaluar estado del usuario
+    let userConnect = firebase.auth().currentUser.email;
+    // let userConnect = dataConnectUser.email;
+    console.log('Usuario conectado es: ' + userConnect);
 
-      buttonLogOut.addEventListener('click', () => {
-        logOutUser()
-          .then(() => {
-            console.log('Usuario fuera de session');
-            changeHash('/inite') ;
-          })
-          .catch((err) => {
-            console.log(err.message);
-          }); 
-      });
+    buttonLogOut.addEventListener('click', () => {
+      logOutUser()
+        .then(() => {
+          console.log('Usuario fuera de session');
+          changeHash('/inite') ;
+        })
+        .catch((err) => {
+          console.log(err.message);
+        }); 
+    });
 
-      buttonDeleteUser.addEventListener('click', () => {
-        deleteUserFireStore('Users', userConnect);
-        changeHash('/inite') ;
-      });
-    } else {
-      state = false;
-    }
-  });
-  return state;
+    buttonDeleteUser.addEventListener('click', () => {
+      deleteUserFireStore('Users', userConnect);
+      changeHash('/inite') ;
+    });
+  } else {
+    console.log('Usuario No conectado');
+  }
+  return 1;
 };
 
 const detectPromisesCreateUser = (funct) => {
@@ -47,11 +77,10 @@ const detectPromisesCreateUser = (funct) => {
         .then((respDoc) => {
           if (respDoc.data() === undefined) {
             console.log('No encontro documento');
-            const objDataUser = {};
+            let objDataUser = {};
             const dataUser = result.user;
-            objDataUser.correo = dataUser.email;
-            objDataUser.usuario = dataUser.displayName;
-            objDataUser.foto = dataUser.photoURL;
+
+            objDataUser = objectCreateUserProfile(dataUser.displayName, dataUser.email, dataUser.photoURL);
             
             console.log(objDataUser);
             
@@ -63,7 +92,6 @@ const detectPromisesCreateUser = (funct) => {
           } else console.log('Usuario ya existe en la BD');
 
           changeHash('/home') ;
-          // Evaluar estado del usuario
         })
         .catch((err) => {
           console.log(err.message);
@@ -84,25 +112,23 @@ export const registerOnSubmit = (buttonRegister) => {
   });
 };
 export const btnAcceptRegisterAndSendToHome = (userName, userEmail, userPassword, buttonAcept) => {
-  // event.preventDefault();
-
   buttonAcept.addEventListener('click', () => {
     createUser(userEmail.value, userPassword.value)
       .then((result) => {
-        const objctCreate = {
-          Usuario: userName.value,
-          Correo: result.user.email,
-        };
+
+        let objctCreate = objectCreateUserProfile(userName.value, result.user.email, '.png');
 
         alert(`Se te ha enviado un mensaje de correo electronico:${result.user.email}
           Por favor de verificarlo para terminar con el proceso! Gracias`);
 
-        const configuracion = {
+        const config = {
           url: 'http://localhost:8887/src'
         };
-        result.user.sendEmailVerification(configuracion).catch((err) => {
-          alert(err.message);
-        });
+        // sendEmail(config)
+        result.user.sendEmailVerification(config)
+          .catch((err) => {
+            alert(err.message);
+          });
 
         Object.keys(objctCreate).forEach((ele) => {
           createUserFireStore('Users', result.user.email, ele, objctCreate[ele])
