@@ -1,7 +1,7 @@
-// import { authenticateFacebook, authenticateGoogle } from "../../lib/auth/authenticateFaceGoogle.js";
+import {registerOnSubmit, accesWithFbOrGoogle, loginUser} from '../view-controller.js';
 
 export default () => {
-  const div = document.createElement('div');
+  const container = document.getElementById('container');
   const divContent = `
     <h2 class="logo-in-main">communitytech</h2>
     <div class="header-right">
@@ -16,6 +16,20 @@ export default () => {
       <h4 class="final-phrase"> ¡Descubre nuestra comunidad! </h4>
     </div>
 ` ;
-  div.innerHTML = divContent;
-  return div;
+  container.innerHTML = divContent;
+  // Login
+  const buttonLogin = document.getElementById('buttonLogin');
+
+  // Registrar a usuario
+  const buttonRegister = document.getElementById('buttonRegister');
+
+  // Login Facebook and Google
+  const buttonFacebook = document.getElementById('buttonFacebook');
+  const buttonGoogle = document.getElementById('buttonGoogle');
+
+
+  loginUser(buttonLogin);
+  registerOnSubmit(buttonRegister);
+  accesWithFbOrGoogle(buttonFacebook, buttonGoogle);
+  return 1;
 };  

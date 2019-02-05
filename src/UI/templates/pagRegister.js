@@ -1,5 +1,7 @@
+import { btnAcceptRegisterAndSendToHome} from '../view-controller.js';
+
 export default () => {
-  const div = document.createElement('div');
+  const container = document.getElementById('container');
   const divContent = `
   <h2 class="text-center">únete a nuestra comunidad</h2>
   <form>
@@ -11,6 +13,13 @@ export default () => {
     </button>
   </form>
 </div>`;
-  div.innerHTML = divContent;
-  return div;
+  container.innerHTML = divContent;
+
+  const createUsername = document.getElementById('createUsername'); 
+  const createEmail = document.getElementById('createEmail');
+  const createPassword = document.getElementById('createPassword');
+  const buttonAcceptRegister = document.getElementById('buttonAcceptRegister');
+
+  btnAcceptRegisterAndSendToHome(createUsername, createEmail, createPassword, buttonAcceptRegister);
+  return 1;
 }

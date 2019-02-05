@@ -10,20 +10,17 @@ const changeHash = (hash) => {
   location.hash = hash;
 };
   
-export const statusUserController = () => {
+export const mainRedSocial = (buttonDeleteUser, buttonLogOut) => {
   let state;
-  let i = 0;
-  const buttonLogOut = document.getElementById('buttonLogOut');
-  // Eliminar usuario por completo de la BD
-  const buttonDeleteUser = document.getElementById('buttonDeleteUser');
-
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       state = true;
+      const userConnect = firebase.auth().currentUser.email;
+      console.log('Usuario conectado es: ' + userConnect);
 
       buttonLogOut.addEventListener('click', () => {
         logOutUser()
-          .then((result) => {
+          .then(() => {
             console.log('Usuario fuera de session');
             changeHash('/inite') ;
           })
@@ -33,14 +30,10 @@ export const statusUserController = () => {
       });
 
       buttonDeleteUser.addEventListener('click', () => {
-        if (firebase.auth().currentUser.email) {
-          deleteUserFireStore('Users', firebase.auth().currentUser.email);
-          changeHash('/inite') ;
-        }
+        deleteUserFireStore('Users', userConnect);
+        changeHash('/inite') ;
       });
     } else {
-      i++;
-      console.log('Usuario desconectado: ' + i);
       state = false;
     }
   });
@@ -68,6 +61,9 @@ const detectPromisesCreateUser = (funct) => {
                 .catch(() => console.log(err.message));                
             }); 
           } else console.log('Usuario ya existe en la BD');
+
+          changeHash('/home') ;
+          // Evaluar estado del usuario
         })
         .catch((err) => {
           console.log(err.message);
@@ -82,72 +78,71 @@ const detectPromisesCreateUser = (funct) => {
     });
 };
 
+export const registerOnSubmit = (buttonRegister) => {
+  buttonRegister.addEventListener('click', () => {
+    changeHash('/pagRegister') ;
+  });
+};
+export const btnAcceptRegisterAndSendToHome = (userName, userEmail, userPassword, buttonAcept) => {
+  // event.preventDefault();
 
-// const logInOnSubmit = () => {
-//   event.preventDefault();
-//   const currentEmail = document.querySelector('#inputEmail').value;
-//   const currentPassword = document.querySelector('#inputPassword').value;
-//   logInUser(currentEmail, currentPassword)
-//     .then(() => changeHash('/home'))
-//     .catch(() => { })
-// }
+  buttonAcept.addEventListener('click', () => {
+    createUser(userEmail.value, userPassword.value)
+      .then((result) => {
+        const objctCreate = {
+          Usuario: userName.value,
+          Correo: result.user.email,
+        };
 
-const registerOnSubmit = () => {
-  event.preventDefault();
-  const usernameForCreateNewUser = document.querySelector('#createUsername').value; 
-  const emailForCreateNewUser = document.querySelector('#createEmail').value;
-  const passwordForCreateNewUser = document.querySelector('#createPassword').value;
-  createUser(emailForCreateNewUser, passwordForCreateNewUser)
-    .then((result) => {
-      const objctCreate = {
-        Usuario: usernameForCreateNewUser,
-        Correo: result.user.email,
-      };
-
-      alert(`Se te ha enviado un mensaje de correo electronico:${result.user.email}
+        alert(`Se te ha enviado un mensaje de correo electronico:${result.user.email}
           Por favor de verificarlo para terminar con el proceso! Gracias`);
 
-      const configuracion = {
-        url: 'http://localhost:8887/src'
-      };
-      result.user.sendEmailVerification(configuracion).catch((err) => {
-        alert(err.message);
-      });
+        const configuracion = {
+          url: 'http://localhost:8887/src'
+        };
+        result.user.sendEmailVerification(configuracion).catch((err) => {
+          alert(err.message);
+        });
 
-      Object.keys(objctCreate).forEach((ele) => {
-        createUserFireStore('Users', result.user.email, ele, objctCreate[ele])
-          .then(() => console.log('documento se escribio correctamente'))
-          .catch(() => console.log(err.message));
-      });
-      changeHash('/home') ;
-    })
-    .catch((err) => {
-      console.log(err.code);
-      console.log(err.credential);
-      alert(err.message !== undefined ? err.message : err.email);  
-    });
+        Object.keys(objctCreate).forEach((ele) => {
+          createUserFireStore('Users', result.user.email, ele, objctCreate[ele])
+            .then(() => console.log('documento se escribio correctamente'))
+            .catch(() => console.log(err.message));
+        });
+        changeHash('/inite') ;
+      })
+      .catch((err) => {
+        console.log(err.code);
+        console.log(err.credential);
+        alert(err.message !== undefined ? err.message : err.email);  
+      });  
+  });
 };
 
-export const accesWithFbOrGoogle = () => {
-  const buttonFacebook = document.querySelector('#buttonFacebook');
-  const butttonGoogle = document.querySelector('#buttonGoogle');
+export const loginUser = (buttonLogin) => {
+  buttonLogin.addEventListener('click', () => {
+    changeHash('/pagIniteSesion');
+  });
+};
+export const btnAcceptLoginAndSendToHome = (inputEmail, inputPassword, buttonAcceptLogin) => {
+  buttonAcceptLogin.addEventListener('click', () => {
+    logInUser(inputEmail.value, inputPassword.value)
+      .then(() => {
+        changeHash('/home') ;        
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });    
+  });
+};
 
+export const accesWithFbOrGoogle = (buttonFacebook, buttonGoogle) => {
   buttonFacebook.addEventListener('click', () => {
     detectPromisesCreateUser(authenticateFacebook());
-    changeHash('/home') ;
   });
-  butttonGoogle.addEventListener('click', () => {
+  buttonGoogle.addEventListener('click', () => {
     detectPromisesCreateUser(authenticateGoogle());
-    changeHash('/home') ;
   });
 };
 
-export const btnAcceptRegisterAndSendToHome = () => {
-  const btnRegister = document.querySelector('#buttonAcceptRegister');
-  btnRegister.addEventListener('click', registerOnSubmit);
-};
 
-export const btnAcceptLoginAndSendToHome = () => {
-  const btnSignIn = div.querySelector('#buttonAcceptLogin');
-  btnSignIn.addEventListener('click', logInOnSubmit);
-};
