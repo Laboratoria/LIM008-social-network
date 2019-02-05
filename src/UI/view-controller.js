@@ -1,7 +1,6 @@
 // import { logInUser } from '../lib/auth/logInUser.js';
 
-import { createUser, authenticateFacebook, authenticateGoogle, logInUser, logOutUser,
-  sendEmail, userStateChange, dataConnectUser} 
+import { createUser, authenticateFacebook, authenticateGoogle, logInUser, logOutUser, userStateChange} 
   from '../lib/authBD/authFireBase.js';
 
 import { createUserFireStore, readUserFireStore, updateUserFireStore, deleteUserFireStore}
