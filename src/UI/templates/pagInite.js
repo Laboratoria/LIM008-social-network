@@ -29,5 +29,6 @@ export default () => {
   loginUser(buttonLogin);
   registerOnSubmit(buttonRegister);
   accesWithFbOrGoogle(buttonFacebook, buttonGoogle);
+  
   return 1;
 };  

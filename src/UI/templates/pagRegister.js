@@ -11,8 +11,7 @@ export default () => {
     <button class="btn-register" id="buttonAcceptRegister">
     Registrar
     </button>
-  </form>
-</div>`;
+  </form>`;
   container.innerHTML = divContent;
 
   const createUsername = document.getElementById('createUsername'); 
@@ -21,5 +20,6 @@ export default () => {
   const buttonAcceptRegister = document.getElementById('buttonAcceptRegister');
 
   btnAcceptRegisterAndSendToHome(createUsername, createEmail, createPassword, buttonAcceptRegister);
+
   return 1;
 }
