@@ -1,7 +1,4 @@
-// import { logInUser } from '../lib/auth/logInUser.js';
-
-import { createUser, authenticateFacebook, authenticateGoogle, logInUser, logOutUser,
-  sendEmail, userStateChange, dataConnectUser} 
+import { createUser, authenticateFacebook, authenticateGoogle, logInUser, logOutUser, userStateChange,passwordReset} 
   from '../lib/authBD/authFireBase.js';
 
 import { createUserFireStore, readUserFireStore, updateUserFireStore, deleteUserFireStore}
@@ -249,6 +246,18 @@ export const btnAcceptLoginAndSendToHome = (inputEmail, inputPassword, buttonAcc
     logInUser(inputEmail.value, inputPassword.value)
       .then(() => {
         changeHash('/home') ;        
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });    
+  });
+};
+
+export const getEmailAndSendEmailToRecoverPassword = (inputEmail,buttonMissedPassword) => {
+  buttonMissedPassword.addEventListener('click', () => {
+    passwordReset(inputEmail.value)
+      .then(() => {
+        alert('Se te envió un correo para la recuperación de tu contraseña,sigue los pasos');        
       })
       .catch((err) => {
         console.log(err.message);

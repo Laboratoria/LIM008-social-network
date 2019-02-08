@@ -1,4 +1,4 @@
-import { btnAcceptLoginAndSendToHome} from '../view-controller.js';
+import { btnAcceptLoginAndSendToHome, getEmailAndSendEmailToRecoverPassword} from '../view-controller.js';
 
 export default () => {
   const container = document.getElementById('container');
@@ -7,7 +7,7 @@ export default () => {
       <h2 class="text-center">communitytech</h2>
       <input type="text" id="inputEmail" class="username-o-correo" placeholder="nombre de usuario o correo">
       <input type="password" id="inputPassword" class="password-enter" placeholder="contraseña">
-      <h5 class="missed">¿Olvidaste tu cuenta?</h7>
+      <button class="missed" id="missedPassword">¿Olvidaste tu contraseña?</button>
       <button id="buttonAcceptLogin" class="btn-inite-sesion">Iniciar sesion</button>
     </form>
     `;
@@ -16,7 +16,9 @@ export default () => {
   const inputEmail = document.getElementById('inputEmail');
   const inputPassword = document.getElementById('inputPassword');
   const buttonAcceptLogin = document.getElementById('buttonAcceptLogin');
-  btnAcceptLoginAndSendToHome(inputEmail, inputPassword, buttonAcceptLogin );
-
+  const buttonMissedPassword = document.getElementById('missedPassword');
+  getEmailAndSendEmailToRecoverPassword(inputEmail, buttonMissedPassword);
+  btnAcceptLoginAndSendToHome(inputEmail, inputPassword, buttonAcceptLogin);
+  // selecccionando elementos del DOM
   return 1;
 };
