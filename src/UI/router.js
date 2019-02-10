@@ -3,6 +3,7 @@ import Login from './templates/pagLogin.js';
 import Register from './templates/pagRegister.js';
 import Home from './templates/home.js';
 import Post from './templates/post.js';
+import {photoUserGlobal, nameUserGlobal} from './view-controller.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
@@ -28,7 +29,8 @@ const viewTmp = (routers) => {
   case 'home':
     Home(); break;
   case 'createPost':
-    Post(); break;
+    Post(nameUserGlobal, photoUserGlobal); 
+    break;
   default:
     Inite(); break;
   }
