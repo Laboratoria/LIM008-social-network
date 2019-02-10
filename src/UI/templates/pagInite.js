@@ -4,7 +4,9 @@ export default () => {
   const container = document.getElementById('container');
   const divContent = `
     <h2 class="logo-in-main">communitytech</h2>
-  <button class="btn-inite-sesion inite-text" id="buttonLogin">Iniciar session</button>
+    <div class="header-right">
+      <button class="btn-inite-sesion inite-text" id="buttonLogin">Iniciar session</button>
+    </div>
     <h3 class="slogan">entérate de lo último en tecnología</h3>
     <div class="ways-of-inite">
       <button id="buttonRegister" class="btn-register">Registrate</button>
@@ -29,6 +31,6 @@ export default () => {
   loginUser(buttonLogin);
   registerOnSubmit(buttonRegister);
   accesWithFbOrGoogle(buttonFacebook, buttonGoogle);
-  
+
   return 1;
 };  

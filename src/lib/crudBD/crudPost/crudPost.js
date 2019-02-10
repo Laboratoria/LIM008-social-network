@@ -4,9 +4,9 @@ export const createPostFireStore = (idCollection, idCollectionPost, idUser, idPo
 };
 // obtenemos la informacion completa de la collecion "post"
 export const readPostFireStore = (idCollection, idCollectionPost, idUser) => {
-    return firebase.firestore().collection(idCollection).doc(idUser)
-      .collection(idCollectionPost).get();
-  };
+  return firebase.firestore().collection(idCollection).doc(idUser)
+    .collection(idCollectionPost).get();
+};
 
 // obtiene un campo especifico del post
 export const readDocPostFireStore = (idCollection, idCollectionPost, idUser, idPost) => {
