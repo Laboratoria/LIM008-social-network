@@ -1,5 +1,7 @@
-// Este es el punto de entrada de tu aplicacion
+import { initRouter } from './UI/router.js';
+import { configBD } from './lib/configBD/configFireBase.js';
 
-import { myFunction } from './lib/index.js';
-
-myFunction();
+window.onload = () => {
+	configBD();
+	initRouter();
+}
