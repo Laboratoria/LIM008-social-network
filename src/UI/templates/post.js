@@ -1,10 +1,10 @@
-import {createPost} from '../view-controller.js';
+import {createPost, editPost} from '../view-controller.js';
 
-export default (userName, userPhoto) => {
+export default (editCreate) => {
   const container = document.getElementById('container');
   const divContent = `
-    <input type="image" src="${userPhoto}" id= "userPhoto" width="80" height="100" alt="Login"></input><br>
-    <label id= "userName">${userName}</label>
+    <input type="image" id= "userPhoto" width="80" height="100" alt="Login"></input><br>
+    <label id= "userName"></label>
 
     <h6 class="post-tittle-categoria">Categoría</h6>
     <select id = "postType">
@@ -17,6 +17,7 @@ export default (userName, userPhoto) => {
     </select>
     <input id = "titlePost" class="tittle-of-post" placeholder="Escriba Titulo" type="text"></input>
     <input id= "multimedia" type="file" name="multimedia"/>
+    <img id="multmediaImage" src="" width="150" height="100"><br>
     <input id = "descriptionPost" placeholder="Escribe aquí" type="text"></input>
     <select id = "postPrivacy">
         <option value="amigos">Amigos</option>
@@ -27,17 +28,20 @@ export default (userName, userPhoto) => {
     `;
   container.innerHTML = divContent;
 
-  // const userName = document.getElementById('userName');
-  // const userPhoto = document.getElementById('userPhoto');
+  const userPhoto = document.getElementById('userPhoto');
+  const userName = document.getElementById('userName');
   const postType = document.getElementById('postType');
   const titlePost = document.getElementById('titlePost');
   const descriptionPost = document.getElementById('descriptionPost');
-  const multimedia = document.getElementById('multimedia');    
+  const multimedia = document.getElementById('multimedia');
+  const multmediaImage = document.getElementById('multmediaImage');
   const postPrivacy = document.getElementById('postPrivacy');
   const savePublicPost = document.getElementById('savePublicPost');
   const closePost = document.getElementById('closePost');
 
-
-  createPost(userPhoto, userName, postType, titlePost, descriptionPost, multimedia, postPrivacy, savePublicPost, closePost);
+  if(editCreate)
+  createPost(userPhoto, userName, postType, titlePost, descriptionPost, multimedia, multmediaImage, postPrivacy, savePublicPost, closePost);
+  else
+  editPost(userPhoto, userName, postType, titlePost, descriptionPost, multimedia, multmediaImage, postPrivacy, savePublicPost, closePost);
   return 1;
 };

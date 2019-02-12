@@ -2,6 +2,10 @@ export const createBDFireStore = (idCollection, idUser, obj) => {
   return firebase.firestore().collection(idCollection).doc(idUser).set(obj);
 };  
 
+export const createPostBDFireStore = (idCollection, obj) => {
+  return firebase.firestore().collection(idCollection).add(obj);
+};  
+
 export const readBDFireStore = (idCollection) => {
   // return firebase.firestore().collection(idCollection).get();
   return firebase.firestore().collection(idCollection);
@@ -13,8 +17,10 @@ export const readDocBDFireStore = (idCollection, idUser) => {
 };
 
 // Actualiza o incluye campos en el documento
-export const updateBDFireStore = (idCollection, idUser, key, value) => {
-  return firebase.firestore().collection(idCollection).doc(idUser).update({[key]: value});
+export const updateBDFireStore = (idCollection, idUser, obj) => {
+  // return firebase.firestore().collection(idCollection).doc(idUser).update({[key]: value});
+  return firebase.firestore().collection(idCollection).doc(idUser).update(obj);
+
 };
 
 export const deleteUserFireStore = (idCollection, idUser) => {

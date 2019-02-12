@@ -3,5 +3,5 @@ import { configBD } from './lib/configBD/configFireBase.js';
 
 window.onload = () => {
 	configBD();
-	initRouter();
+	initRouter();	
 }

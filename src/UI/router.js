@@ -3,12 +3,14 @@ import Login from './templates/pagLogin.js';
 import Register from './templates/pagRegister.js';
 import Home from './templates/home.js';
 import Post from './templates/post.js';
-import {photoUserGlobal, nameUserGlobal} from './view-controller.js';
+import objUpdatePost from './templates/updatePost.js';
+
+import {editCreatePost} from './view-controller.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTmp('#/inite');
-  } else if (hash === '#/pagIniteSesion' || hash === '#/pagRegister' || hash === '#/home' || hash === '#/createPost') {
+  } else if (hash === '#/pagIniteSesion' || hash === '#/pagRegister' || hash === '#/home' || hash === '#/createPost' || hash === '#/updatePost') {
     return viewTmp(hash);
   } else {
     return viewTmp('#/inite');
@@ -29,7 +31,10 @@ const viewTmp = (routers) => {
   case 'home':
     Home(); break;
   case 'createPost':
-    Post(nameUserGlobal, photoUserGlobal); 
+    Post(editCreatePost); break;
+  case 'createPost':
+    // UpdatePost(userName, userPhoto, titlePost, multimedia, descriptionPost);
+    Post(editCreatePost); break;
     break;
   default:
     Inite(); break;
