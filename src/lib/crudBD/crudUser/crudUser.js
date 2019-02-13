@@ -37,6 +37,10 @@ export const deleteDocFireStore = (idCollection, idUser) => {
   return firebase.firestore().collection(idCollection).doc(idUser).delete();
 };
 
+export const filterBDFile = (idCollection, key, value) => {
+  // return firebase.firestore().collection(idCollection).where(key, '==', value);
+  return firebase.firestore().collection(idCollection);
+}
 export const sendImagePost = (imageASubir) => {
   return firebase.storage().ref().child('images/' + imageASubir.name).put(imageASubir);
 };

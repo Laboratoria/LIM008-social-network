@@ -3,7 +3,6 @@ import Login from './templates/pagLogin.js';
 import Register from './templates/pagRegister.js';
 import Home from './templates/home.js';
 import Post from './templates/post.js';
-import objUpdatePost from './templates/updatePost.js';
 
 import {editCreatePost} from './view-controller.js';
 
