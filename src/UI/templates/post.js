@@ -39,9 +39,9 @@ export default (editCreate) => {
   const savePublicPost = document.getElementById('savePublicPost');
   const closePost = document.getElementById('closePost');
 
-  if(editCreate)
-  createPost(userPhoto, userName, postType, titlePost, descriptionPost, multimedia, multmediaImage, postPrivacy, savePublicPost, closePost);
+  if (editCreate)
+    createPost(userPhoto, userName, postType, titlePost, descriptionPost, multimedia, multmediaImage, postPrivacy, savePublicPost, closePost);
   else
-  editPost(userPhoto, userName, postType, titlePost, descriptionPost, multimedia, multmediaImage, postPrivacy, savePublicPost, closePost);
+    editPost(userPhoto, userName, postType, titlePost, descriptionPost, multimedia, multmediaImage, postPrivacy, savePublicPost, closePost);
   return 1;
 };

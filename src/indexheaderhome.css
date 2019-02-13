@@ -124,15 +124,15 @@ body {
  .grid-container {
     display: grid;
     grid-gap: 50px 100px;
-    grid-template-columns: auto auto auto;
-    background-color: rgb(158, 196, 226, 0.8);
+    grid-template-columns: auto auto;
+    background-color: rgba(63, 90, 179, 0.5);
     padding: 10px;
   }
   
   .grid-item {
-    background-color: rgba(110, 113, 117, 0.3);
+    background-color: rgba(64, 228, 86, 0.3);
     border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    font-size: 30px;
+    padding: 10px;
+    font-size: 10px;
     text-align: center;
   }
