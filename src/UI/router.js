@@ -32,7 +32,9 @@ const viewTmp = (routers) => {
   case 'home':
     Home(); break;
   case 'createPost':
-    Post(editCreatePost); break;
+    // UpdatePost(userName, userPhoto, titlePost, multimedia, descriptionPost);
+    Post(editCreatePost); 
+  break;
   case 'createPostComment':
     CommentPost(idPostCommentGlobal); break;
   default:
