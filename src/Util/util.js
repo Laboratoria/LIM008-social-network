@@ -53,11 +53,9 @@ export const objectCreatePost = (correoUsuario, fotoUsuario, nombreUsuario, fech
     descripcion: descripcion,
     multimedia: multimedia,
   };
-  objectPost.likes = 0;
-  objectPost.comentarios = {
-    quienComento: '',
-    likes: 0,
-  };
+  objectPost.likes = [],
+  objectPost.comentarios = [
+  ];
   return objectPost;
 };
 

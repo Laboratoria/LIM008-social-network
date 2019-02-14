@@ -1,5 +1,5 @@
 export const createBDFireStore = (idCollection, idUser, obj) => {
-  return firebase.firestore().collection(idCollection).doc(idUser).set(obj);
+  return firebase.firestore().collection(idCollection).doc(idUser).set(obj, { merge: true});
 };  
 
 export const createPostBDFireStore = (idCollection, obj) => {
