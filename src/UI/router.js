@@ -3,13 +3,15 @@ import Login from './templates/pagLogin.js';
 import Register from './templates/pagRegister.js';
 import Home from './templates/home.js';
 import Post from './templates/post.js';
+import CommentPost from './templates/commentPost.js';
 
-import {editCreatePost} from './view-controller.js';
+import {editCreatePost, idPostCommentGlobal} from './view-controller.js';
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
     return viewTmp('#/inite');
-  } else if (hash === '#/pagIniteSesion' || hash === '#/pagRegister' || hash === '#/home' || hash === '#/createPost' || hash === '#/updatePost') {
+  } else if (hash === '#/pagIniteSesion' || hash === '#/pagRegister'|| 
+  hash === '#/home' || hash === '#/createPost' || hash === '#/updatePost' || hash === '#/createPostComment') {
     return viewTmp(hash);
   } else {
     return viewTmp('#/inite');
@@ -33,6 +35,8 @@ const viewTmp = (routers) => {
     // UpdatePost(userName, userPhoto, titlePost, multimedia, descriptionPost);
     Post(editCreatePost); 
   break;
+  case 'createPostComment':
+    CommentPost(idPostCommentGlobal); break;
   default:
     Inite(); break;
   }

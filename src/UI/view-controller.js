@@ -1,4 +1,5 @@
 import itemPost from './templates/itemPost.js';
+import itemCommentPost from './templates/itemCommentPost.js';
 import { changeHash, getDayAndHour, objectCreateUserProfile, objectCreatePost, ObjectUpdatePost, deletAndEdit} from '../Util/util.js';
 import { createUser, authenticateFacebook, authenticateGoogle, logInUser, logOutUser,
   sendEmail, userStateChange, dataConnectUser, passwordReset} 
@@ -9,7 +10,11 @@ import { createBDFireStore, createPostBDFireStore, readBDFireStore, readDocBDFir
   from '../lib/crudBD/crudUser/crudUser.js';
 
 export let editCreatePost = 0;
-let objUpdatePost ;
+export let idPostCommentGlobal;
+
+let idPostGlobal;
+let userConnect, userConnectPhoto, userConnectName;
+
 
 
 export const createPost = (userPhoto, userName, postType, titlePost,
@@ -29,7 +34,10 @@ export const createPost = (userPhoto, userName, postType, titlePost,
             userName_ = userName.innerHTML = saveDocumentUser.usuario;
           }
         });  
-    } else console.log('Usuario se desconecto');
+    } else {
+      console.log('Usuario se desconecto');
+      changeHash('/inite');
+    }
   });
       
 
@@ -90,13 +98,60 @@ export const createPost = (userPhoto, userName, postType, titlePost,
   });
 };
 
+export const createCommentPost = (inputComment,wallComentPost, saveCommentPost, closeCommentPost) => {
+    console.log('Usuario Conectado comment: '+userConnect);
+    console.log('idPostCommentar: '+idPostCommentGlobal);
+  if (userConnect === undefined || idPostCommentGlobal === undefined){
+    changeHash('/home');
+    return 1;
+  }
+
+  closeCommentPost.addEventListener('click', () => {
+    changeHash('/home');
+  });
+
+  viewAllCommentPost(wallComentPost,'Post',idPostCommentGlobal);
+
+  saveCommentPost.addEventListener('click',() =>{
+
+    // console.log('userConnectPhoto: '+ userConnectPhoto);
+    // console.log('userConnectName: '+userConnectName);
+    
+    readDocBDFireStore('Post', idPostCommentGlobal)
+    .then((dataPost)=>{
+      const newArrayPostComment = dataPost.data().comentarios;
+      let newObjectPostComment = {
+          propietario: {
+              nombre: userConnectName,
+              foto: userConnectPhoto},
+          contenido: inputComment.value,
+          likes: []        
+      }
+      newArrayPostComment.push(newObjectPostComment);
+      createBDFireStore('Post', idPostCommentGlobal, {comentarios: newArrayPostComment})
+      .then((result) => {
+        console.log('Se guardo comentario correctamente');
+        changeHash('/home');
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });      
+    })
+    .catch((err) =>{
+      console.log(err.message);
+    });
+
+  });
+
+}
 export const editPost = (userPhoto_, userName_, postType_, titlePost_, descriptionPost_, multimedia_,
   multmediaImage_, postPrivacy_, savePublicPost_, closePost_) => {
-  console.log('objUpdatePost: ' + objUpdatePost);
+    console.log('Ingresa EditPost');
+    console.log('idPostGlobal: ' + idPostGlobal);
   
-  console.log('Ingresa EditPost');
-  
-  readDocBDFireStore('Post', objUpdatePost)
+  if (idPostGlobal === undefined) changeHash('/home');
+  else {
+    readDocBDFireStore('Post', idPostGlobal)
     .then((dataPost) => {
       const objdataPost = dataPost.data();
 
@@ -130,7 +185,7 @@ export const editPost = (userPhoto_, userName_, postType_, titlePost_, descripti
   
         objDataUser = ObjectUpdatePost(postPrivacyValue, postTypeValue, titlePost_.value, descriptionPost_.value, objdataPost.contenido.multimedia);
   
-        updateBDFireStore('Post', objUpdatePost, objDataUser)
+        updateBDFireStore('Post', idPostGlobal, objDataUser)
           .then(() => {
             console.log('documento se actualizo correctamente en post');
             changeHash('/home') ;
@@ -138,15 +193,22 @@ export const editPost = (userPhoto_, userName_, postType_, titlePost_, descripti
           .catch(() => console.log(err.message));    
       });
     }) 
-    .catch((err) => console.log(err.message));
+    .catch((err) => {
+      console.log(err.message)
+      changeHash('/inite');
+    });
   
   closePost_.addEventListener('click', () => {
     changeHash('/home');
   });
+  }
+
+  
+
 };
 
 export const mainRedSocial = (userPhoto, userName, buttonDeleteUser, buttonLogOut, createPost, postWall, filterTypePost) => {
-  let userConnect;
+  // let userConnect;
 
   firebase.auth().onAuthStateChanged((result) => {
     if (result) {
@@ -156,8 +218,8 @@ export const mainRedSocial = (userPhoto, userName, buttonDeleteUser, buttonLogOu
         .then((respDoc) => {
           const saveDocumentUser = respDoc.data();
           if (saveDocumentUser !== undefined) {
-            userPhoto.src = saveDocumentUser.foto;
-            userName.innerHTML = saveDocumentUser.usuario;
+            userConnectPhoto = userPhoto.src = saveDocumentUser.foto;
+            userConnectName = userName.innerHTML = saveDocumentUser.usuario;
 
             viewAllPost(postWall, userConnect, 'Post', 'nombreUsuario', saveDocumentUser.usuario,
               'privacidad', 'publico', '', '');
@@ -173,14 +235,14 @@ export const mainRedSocial = (userPhoto, userName, buttonDeleteUser, buttonLogOu
             });
           }
         });
-      // filterPostFile('Post', 'nombreUsuario', 'Jackelin milagros Perez chahua', 'privacidad', 'publico', 'categoria', 'Inteligencia Artificial');
     
       postWall.addEventListener('click', () => {
         const targetEventID = event.target.id;
-        itemViewPost(targetEventID, postWall);
+        itemViewPost(targetEventID, userConnect);
       });
     } else {
       console.log('Usuario No conectado');
+      changeHash('/inite') ;
     }    
   });
 
@@ -297,6 +359,23 @@ export const btnAcceptLoginAndSendToHome = (inputEmail, inputPassword, buttonAcc
   });  
 };
 
+const viewAllCommentPost = (postWallComment, postCollection, postIdCollection) => {
+
+  console.log('postCollection: '+postCollection + ' postIdCollection: '+postIdCollection);
+  
+if(postWallComment !== undefined || postWallComment === null) {
+  filterBDFile(postCollection).doc(postIdCollection)
+  .onSnapshot((docPost) =>{
+    postWallComment.innerHTML = '';
+    const allPostComment = docPost.data().comentarios;
+    console.log('docPost: '+ Object.keys(docPost.data()));
+    allPostComment.forEach((dataCommentPost, idCommentPost) => {
+      itemCommentPost(idCommentPost, dataCommentPost, '', postWallComment);
+    })
+  })
+}
+}
+
 const viewAllPost = (postWall, userConnect, postCollection, key1, value1, key2, value2, key3, value3) => {
   filterBDFile(postCollection)
     .onSnapshot((doc) => {
@@ -314,11 +393,24 @@ const viewAllPost = (postWall, userConnect, postCollection, key1, value1, key2, 
         objWall = arrPost.filter(ele => (ele[key1] === value1 || ele[key2] === value2));
   
       objWall.forEach((dataPost) => {
+        let colorLikeInit = '';
         const idPost = dataPost.id;
         console.log('post.id: ' + idPost);
+
+        const saveNameUserLike = dataPost.likes;
+
+        const detectLike = saveNameUserLike.filter((userLike) => userLike === userConnect);
+        if (detectLike.length > 0) {
+          console.log('Ya DIO LIKE');
+          colorLikeInit = 'background: #de555e;';
+        }
+
         if (userConnect === dataPost.correoUsuario)
-          itemPost(idPost, dataPost, deletAndEdit(idPost), postWall);
-        else itemPost(idPost, dataPost, '', postWall);
+          itemPost(idPost, dataPost, deletAndEdit(idPost), postWall, colorLikeInit);
+        else itemPost(idPost, dataPost, '', postWall, colorLikeInit);
+
+        const wallComentPost = document.getElementById(`wallComentItemPost_${idPost}`);
+        viewAllCommentPost(wallComentPost,'Post',idPost);
       });
     });
 };
@@ -333,15 +425,13 @@ export const accesWithFbOrGoogle = (buttonFacebook, buttonGoogle) => {
   });
 };
 
-export const itemViewPost = (targetID) => {
+export const itemViewPost = (targetID, nameUserConnect) => {
   if (targetID) {
-    console.log('target: ' + targetID + ' index: ' + targetID.indexOf('editPost_'));
-      
     if (targetID.indexOf('editPost_') > -1) {
       const idPost = targetID.substr(('editPost_').length, targetID.length - ('editPost_').length);
       console.log('id= ' + idPost);
 
-      objUpdatePost = idPost;
+      idPostGlobal = idPost;
       editCreatePost = 0;
       changeHash('/createPost');
     } else if (targetID.indexOf('deletePost_') > -1) {
@@ -355,6 +445,47 @@ export const itemViewPost = (targetID) => {
         .catch((err) => {
           console.log('err= ' + err.message);
         });
+    } else if (targetID.indexOf('likes_') > -1) {
+      // logica de likes
+      const idPost = targetID.substr(('likes_').length, targetID.length - ('likes_').length);
+      console.log('id_likes= ' + idPost);
+
+      readDocBDFireStore('Post', idPost)
+        .then((dataPost) => {
+          const saveNameUserLike = dataPost.data().likes;
+          let newArrayLikes = [];
+
+          const detectLike = saveNameUserLike.filter((userLike) => userLike === nameUserConnect);
+          if (detectLike.length > 0) {
+            saveNameUserLike.map((userLike) => {
+              if (userLike !== nameUserConnect) newArrayLikes.push(userLike);
+              return 1;
+            });
+          } else {
+            newArrayLikes = saveNameUserLike;
+            newArrayLikes.push(nameUserConnect);
+          }
+
+          console.log('newArrayLikes: ' + newArrayLikes);
+
+          createBDFireStore('Post', idPost, {likes: newArrayLikes})
+          .then((result) => {
+            if (detectLike.length > 0) document.getElementById(targetID).style.backgroundColor = '#FFFFFF';
+            else document.getElementById(targetID).style.backgroundColor = '#de555e';
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } else if (targetID.indexOf('comment_')>-1) {
+      const idPost = targetID.substr(('comment_').length, targetID.length - ('comment_').length);
+      console.log('id_comment= ' + idPost);
+      idPostCommentGlobal = idPost;
+      changeHash('/createPostComment');
     }
   }
 };
