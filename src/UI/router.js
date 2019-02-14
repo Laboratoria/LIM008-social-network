@@ -30,11 +30,9 @@ const viewTmp = (routers) => {
   case 'home':
     Home(); break;
   case 'createPost':
-    Post(editCreatePost); break;
-  case 'createPost':
     // UpdatePost(userName, userPhoto, titlePost, multimedia, descriptionPost);
-    Post(editCreatePost); break;
-    break;
+    Post(editCreatePost); 
+  break;
   default:
     Inite(); break;
   }
