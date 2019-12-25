@@ -1,0 +1,212 @@
+*{
+  box-sizing: border-box;
+  }
+body{
+  margin: auto;
+  font-family: Lato;
+  text-align: center;
+  background: #62BBC1;
+ }
+
+.login, .register{
+  position: absolute;
+  height: 100%;
+  padding: 25px;
+  margin: auto;
+  width: 100%;
+}
+.login{
+  background:#62BBC1;
+  color:white;
+}
+.logo{
+  margin: 20px 0px 40px
+}
+.login input{
+  color: white;
+  background-color: rgba(74, 152, 255, 0);
+  border: 0;
+  border-bottom: 2px solid rgb(255, 255, 255, 0.1);
+ }
+.login ::placeholder{
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: Lato
+}
+#message, #message2{
+  display: none;
+  color: red;
+  margin-bottom: 10px;
+}
+textarea {
+  resize: none;  /* deshabilitar la posibilidad de redimiensionar */
+  padding: 10px;
+  font-size: 14px;
+  color: #1f1f1f;
+  border-radius: 20px;
+  margin: 30px;
+}
+textarea[disabled] {
+  background: white;
+  border:none;
+}
+button, a{
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-family: Lato;
+}
+.button img {
+  width: 22px;
+}
+.space{
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 20px;
+ }
+.google{
+  vertical-align: middle;
+  background: rgb(240, 240, 240);
+  color: #333333;
+}
+.sign-post-btn{
+  background: #1698A0;
+}
+.google:hover{
+  background: rgb(216, 216, 216);
+}
+.delete-btn{
+  background: #c90e0e;
+}
+.edit-btn{
+  background: #69BFE3;
+  color: #333333;
+}
+.like-btn{
+  background: none;
+}
+.select-btn{
+  border: 9px double #990000;
+}
+.pets{
+  width: 95%;
+  margin-top: 31px
+}
+.register{
+  background-image: url("./imgs/background-register.jpg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+.register img{
+  margin: 50px
+}
+.register h2{
+  text-align: left;
+  font-size: 30px
+}
+.register ::placeholder { 
+  font-family: Lato;
+  font-size: 18px; 
+  color:rgba(255, 255, 255, 0.7);
+}
+.register input{
+  color: white;
+  background-color: rgba(74, 152, 255, 0);
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  margin-top: 40px;
+ }
+ .register button{
+   margin-top: 100px
+ }
+ .button, input, textarea:focus{
+  outline: none;
+}
+@media(min-width: 500px){
+  .inputs-buttons-img{
+    margin: auto;
+    text-align: center
+  }
+  .inputs-buttons{
+    margin: 0 auto;
+    margin: 0px 50px 0px;
+    max-width: 500px;;
+  }
+  .pets-signup{
+    min-width: 500px;
+  }
+}
+@media(max-width: 1200px) and (min-width: 500px){
+
+    .inputs-buttons{
+      margin: auto;
+    width: 500px;
+  }
+  .pets-signup{
+    margin: auto;
+    width: 500px;
+  }
+  
+}
+@media(min-width: 1200px){
+  .logo{
+    margin-bottom: 0
+  }
+  .inputs-buttons{
+    margin: auto;
+  }
+  .pets-signup{ 
+    margin: auto;
+    width: 50%;
+  }
+  .inputs-buttons-img{
+    flex-direction: row-reverse;
+    display: flex
+  }
+}
+
+/* HOME */
+.menu-arriba{
+  background: #62BBC1;
+  justify-content: space-between;
+}
+.menu-abajo{
+  justify-content: space-around;
+}
+.section{
+  text-align: center;
+  width: 100%;
+  background: #ffffff;
+}
+.wall-post{
+  border-top: #E1E1E1 5px solid;
+  padding-bottom: 20px;
+}
+.button {
+  border: none;
+  padding: 8px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.color-white{
+  color: white;
+}
+.save-post{
+  display: none;
+}
+ul{
+  list-style: none;
+}
+footer{
+width: 100%;
+background: white;
+border-top: 2px solid rgb(146, 146, 146);
+padding-top: 10px
+}
